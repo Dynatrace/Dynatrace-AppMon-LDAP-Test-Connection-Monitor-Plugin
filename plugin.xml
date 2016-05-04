@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!-- plugin.xml file written by dynaTrace Client 6.1.0 -->
+<plugin>
+  <extension point="com.dynatrace.diagnostics.pdk.pluginconfig" id="com.dynatrace" name="LDAP Test Connection Monitor Plugin ">
+    <information>
+      <category value="" />
+      <displayname value="LDAP Test Connection Monitor Plugin" />
+      <description value="This plugin tests the connection to LDAP server and mesures the time it takes to connect.&#xA;The reason for that is to monitor if the time is increasing considerably that can cause  a bottleneck in that specific ldap server." />
+      <supportlevel value="unsupported" />
+    </information>
+    <configuration>
+      <property key="PROTOCOL" label="PROTOCOL" type="string" description="My property description ..." default="ldap" multiline="false" />
+      <property key="PORT_NUMBER" label="PORT_NUMBER" type="long" description="My property description ..." default="389" />
+      <property key="SECURITY_PRINCIPAL" label="SECURITY_PRINCIPAL" type="string" description="Example:&#xA;cn=read-only-admin,dc=example,dc=com&#xA;or&#xA;uid=euclid,ou=mathematicians,dc=example,dc=com" default="cn=read-only-admin,dc=example,dc=com" multiline="false" />
+      <property key="SECURITY_CREDENTIALS" label="SECURITY_CREDENTIALS" type="password" description="Password used to connecto to LDAP server." default="password" />
+      <property key="TIMEOUT" label="TIMEOUT" type="string" description="Setting timeout for LDAP attempt connect in ms." default="120000" multiline="false" />
+    </configuration>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitor" id="com.dynatrace.monitor" name="LDAP Test Connection Monitor Plugin">
+    <plugin configid="com.dynatrace" class="com.dynatrace.LDAPTestConnection" />
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.dynatrace.metricgroup1" name="LDAP Test Connection">
+    <metricgroup monitorid="com.dynatrace.monitor">
+      <metric defaultrate="purepath" name="ResponseTime" unit="ms" description="Get the time it takes to connect" />
+      <metric defaultrate="purepath" name="ConnectionStatus" unit="number" />
+    </metricgroup>
+  </extension>
+</plugin>
+

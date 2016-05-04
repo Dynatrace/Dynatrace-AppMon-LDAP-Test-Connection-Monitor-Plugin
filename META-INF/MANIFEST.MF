@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.dynatrace.diagnostics.sdk
+Bundle-Vendor: Dynatrace
+Bundle-ClassPath: .
+Bundle-Version: 1.0.1
+Bundle-Name: LDAP Test Connection Monitor Plugin 
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.dynatrace;singleton:=true
+
